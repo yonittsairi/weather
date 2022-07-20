@@ -1,0 +1,50 @@
+.root {
+    display: flex;
+    // text-align: center;
+    position: -webkit-sticky;
+    // position: sticky;
+    // top: 200px;
+    margin-bottom: 5px;
+    .details {
+        // display: flex;
+        // flex-direction: column;
+        width: 100%;
+        margin-bottom: -10px;
+        margin-top: -5px;
+    }
+    .content {
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+        width: 100%;
+        // padding: 10px 25px 10px 25px;
+        // margin-bottom: 45px;
+
+        span {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        margin: 0 auto;
+        :last-child {
+            padding-bottom: 0px;
+        }
+    }
+    button {
+        cursor: pointer;
+        margin-bottom: 5px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.language {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min(50px) min(50px);
+    align-items: center;
+}
+
+.free {
+    margin-bottom: 45px;
+}

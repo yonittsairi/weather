@@ -1,0 +1,26 @@
+.main-footer {
+    background-color: #f7f7f7;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0 5px;
+    bottom: 0;
+
+    grid-column: 1/-1;
+    .footer-logo {
+        font-size: rem(28px);
+    }
+
+    small {
+        color: $clr6;
+    }
+    .footer-list {
+        li {
+            color: $clr6;
+            font-weight: 700px;
+        }
+
+        li:not(:last-child) {
+            margin-inline-end: 85px;
+        }
+    }
+}

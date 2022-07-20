@@ -1,0 +1,63 @@
+.eventiFeaturedPost {
+    background-color: white;
+    color: white;
+    margin-bottom: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+//**************************************************************
+.hostFeaturedPost {
+    // position: relative;
+    background-color: rgb(204, 116, 116);
+    color: white;
+    margin-bottom: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hostFeaturedPostContent {
+    // position: relative;
+    padding: 3px;
+}
+//*************************************************************
+.reviewsFeaturedPost {
+    // position: relative;
+    background-color: rgb(128, 25, 25);
+    color: white;
+    margin-bottom: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rev-img {
+    width: 50px;
+    border-radius: 50%;
+}
+//********************************************************
+
+.cover {
+    width: 151;
+}
+.controls {
+    display: flex;
+    align-items: center;
+    padding-left: 1px;
+    padding-bottom: 1px;
+}
+span {
+    font-size: 30px;
+}
+//date
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.textField {
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 200px;
+}

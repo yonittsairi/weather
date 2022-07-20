@@ -1,0 +1,90 @@
+.hero {
+    height: 85vh;
+    // background-image: url("https://res.cloudinary.com/ds65blvkp/image/upload/v1610905590/rhondak-native-florida-folk-artist-_Yc7OtfFn-0-unsplash_sapagu.jpg");
+    background-color: rgba(235, 235, 235, 0.575);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400%;
+    border-bottom: 2px solid white;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.gallery-home {
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr;
+    height: 85%;
+    width: 100%;
+    display: grid;
+    // border: 2px solid rgb(31, 26, 26);
+
+    justify-content: center;
+
+    img {
+        min-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        image-orientation: flip;
+        border-radius: 0ch;
+    }
+}
+.main-title {
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+.sport {
+    padding-top: 50px;
+    background-color: rgba(235, 235, 235, 0.575);
+}
+.art {
+    padding-top: 50px;
+    // background-color: rgba(235, 235, 235, 0.575);
+}
+// .link {
+//     grid-column: 3/-1;
+// }
+// .sport,
+// .art {
+//     padding-left: 100px;
+//     padding-right: 100px;
+// }
+.title-eventi {
+    a {
+        grid-column: 3/-1;
+    }
+}
+// .eventies {
+//     padding-left: 25px;
+// }
+
+@media screen and (max-width: $mobile-breakpoint) {
+    .gallery-home {
+        grid-template-columns: 100%;
+        grid-template-rows: 1fr 1fr;
+    }
+    .hero {
+        height: 120vh;
+    }
+}
+
+@media screen and (max-width: $narrow-breakpoint) {
+    .gallery-home {
+        grid-template-columns: 100%;
+        grid-template-rows: 1fr 1fr;
+    }
+    .hero {
+        height: 120vh;
+        // margin-top: 2300px;
+    }
+}
