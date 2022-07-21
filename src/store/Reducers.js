@@ -29,8 +29,9 @@ export const getFiveDaysForecastByLocationKey = createAsyncThunk ('weather/weath
 })
 export const getCurrentWeather = createAsyncThunk ('weather/currentWeather', (data) => {
 	return weatherService.getCurrentWeather (data)
-		.then ((response) =>
-			       response
+		.then ((response) => {
+			       return response
+		       }
 		)
 })
 
@@ -110,6 +111,7 @@ export const citiesSlice = createSlice ({
 			                                        state.loading = true
 		                                        })
 		                                        builder.addCase (getCurrentWeather.fulfilled, (state, action) => {
+			                                        console.log (action)
 			                                        state.loading = false
 			                                        state.currentWeather = action.payload
 			                                        state.error = ''

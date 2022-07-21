@@ -6,7 +6,7 @@ import {Route, Routes } from 'react-router';
 
 function App () {
 	return (
-		<div className="App">
+		<div className="App" >
 			<Header/>
 			<Routes >
 				<Route element={<Favorites/>} path="/favorites" />

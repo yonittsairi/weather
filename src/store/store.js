@@ -3,7 +3,7 @@ import citiesReducer from './Reducers'
 export function createStore() {
 	return configureStore({
 		                      reducer: {
-			                      cities: citiesReducer
+			                      appstate: citiesReducer
 		                      },
 
 	                      });

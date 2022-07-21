@@ -10,7 +10,9 @@ import {StorageService} from './storage.service';
 // obtained by passing "details=true" into the url string.
 async function getCurrentWeather (locationKey) {
 	try {
-		return await axios.get (`${constants.getCurrentWeatherUrl}${locationKey}${constants.apiKey}`)
+		const res= await axios.get (`${constants.getCurrentWeatherUrl}${locationKey}${constants.apiKey}`)
+		console.log (res.data[0])
+		return res.data[0]
 	} catch (e) {
 		console.log ('Error')
 	}

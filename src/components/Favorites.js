@@ -3,19 +3,11 @@ import {FormControl, InputLabel, Input, FormHelperText, List, ListItem} from '@m
 import {useDispatch, useSelector} from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import {
-	getCitiesAsync,
-	actions,
-	getFiveDaysForecastByLocationKey,
-	getCoordinateData,
-	getDefaultCity
-} from '../store/Reducers';
-import {constants} from '../constants';
-import {StorageService} from '../services/storage.service';
+import CurrentWeatherCard from './CurrentWeatherCard';
 
 
 const Favorites = () => {
-	const state = useSelector ((state) => state.cities);
+	const state = useSelector ((state) => state.appstate);
 	const dispatch = useDispatch ();
 
 
@@ -25,12 +17,13 @@ const Favorites = () => {
 	return <div>Favorites<FavoriteIcon />
 
 
-
 		{state.favorites.length > 0 &&
 		<List>
-			{state.favorites.map ((c) => {
-				return <ListItem key={c.id} style={{color: 'red'}}
+			{state.favorites.map ((c,index=0) => {
+
+				return <ListItem key={index++} style={{color: 'red'}}
 				>{c.name}<FavoriteIcon />
+					<CurrentWeatherCard currentWeather={c?.currentWeather}/>
 				</ListItem>
 			})}
 		</List>
