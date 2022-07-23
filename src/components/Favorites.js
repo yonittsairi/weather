@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {FormControl, InputLabel, Input, FormHelperText, List, ListItem} from '@mui/material';
-import {useDispatch, useSelector} from 'react-redux';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import React from 'react';
+import { List, ListItem} from '@mui/material';
+import { useSelector} from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CurrentWeatherCard from './CurrentWeatherCard';
 
 
 const Favorites = () => {
 	const state = useSelector ((state) => state.appstate);
-	const dispatch = useDispatch ();
-
-
-
 
 
 	return <div className={'eventiList-container'}>
-		<h1>Favorites</h1><FavoriteIcon />
+		<h1>Favorites</h1>
 
 
 		{state.favorites.length > 0 &&

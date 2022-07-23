@@ -10,7 +10,8 @@ const initialState = {
 	loading: false,
 	error: '',
 	currentWeather: StorageService.load ('currentWeather') || [],
-	defaultCity: StorageService.load ('defaultCity') || {}
+	defaultCity: StorageService.load ('defaultCity') || {},
+	units:'F'
 };
 
 
@@ -50,7 +51,6 @@ export const citiesSlice = createSlice ({
 	                                        initialState,
 	                                        reducers: {
 		                                        setChosenCity: (state, action) => {
-			                                        console.log ('setting chosen city', state, action)
 			                                        state.chosenCity = action.payload
 			                                        StorageService.save ('chosenCity', action.payload)
 		                                        },
@@ -58,25 +58,26 @@ export const citiesSlice = createSlice ({
 			                                        if (action.payload.id) {
 				                                        if (state.favorites?.length > 0) {
 					                                        const exist = state.favorites.find (x => x.id === action.payload.id)
-					                                        console.log ('exist', exist)
 					                                        return
 				                                        }
 				                                        if (state.favorites?.length===0) {
 					                                        state.favorites = [...state.favorites, action.payload]
-					                                        console.log ('adding To favorites', action.payload.id)
 					                                        StorageService.save ('favorites', [...state.favorites, action.payload])
 				                                        }
 			                                        }
 
 		                                        },
 		                                        removeFavorite: (state, action) => {
-			                                        console.log ('removeFavorite ', state, action)
 			                                        if (state.favorites?.length > 0 && action.payload.id) {
 				                                        state.favorites = state.favorites.filter ((f) => f.id === action.payload.id)
 				                                        StorageService.save ('favorites', state.favorites)
 			                                        }
+		                                        },
+		                                        changeUnits(state,action){
+			                                        state.units=action.payload
 		                                        }
 	                                        },
+
 	                                        extraReducers: builder => {
 		                                        builder.addCase (getCitiesAsync.pending, state => {
 			                                        state.loading = true

@@ -22,10 +22,10 @@ const HomePage = () => {
 	const [currentWeather, setCurrentWeather] = useState ({})
 	const [isFavorite, setIsFavorite] = useState (false)
 	const [showList, setShowList] = useState (false)
-	const [units,setUnits]=useState('F')
 	const [value, setValue] = useState ('')
 	const [favorites, setFavoriteList] = useState ([])
 	const state = useSelector ((state) => state.appstate);
+	const [units,setUnits]=useState(state.units)
 	const dispatch = useDispatch ();
 	const chooseCity = (e) => {
 		dispatch (actions.setChosenCity (e))
@@ -98,6 +98,7 @@ const HomePage = () => {
 
 	function convertForecastUnits () {
 		const newUnit= units==='F'?'C':'F'
+		dispatch(actions.changeUnits(newUnit))
 		setUnits(newUnit)
 
 	}

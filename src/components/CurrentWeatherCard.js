@@ -1,8 +1,10 @@
 import React from 'react';
+import {fernhietToCelcuis} from '../services/utils.service';
+import {useSelector} from 'react-redux';
 
-const CurrentWeatherCard = ({currentWeather,units}) => {
+const CurrentWeatherCard = ({currentWeather}) => {
+	const units = useSelector ((state) => state.appstate.units);
 	const number = currentWeather?.WeatherIcon < 10 ? '0' + currentWeather.WeatherIcon : currentWeather.WeatherIcon
-
 	if (!currentWeather) {
 		return <div></div>
 	}
