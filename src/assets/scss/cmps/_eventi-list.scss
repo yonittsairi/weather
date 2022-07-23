@@ -1,12 +1,4 @@
-.eventiList-container {
-    margin-bottom: 30px;
-    padding-left: 50px;
-    padding-right: 50px;
-    max-width: 2000px;
-    align-items: center;
-    grid-column: 1/-1;
-     min-height: 100vh;
-}
+
 .EventiList {
     display: grid;
     grid-template-columns: repeat(auto-fill, min(300px));

@@ -14,6 +14,7 @@ import {constants} from '../constants';
 import {dateFormat} from '../services/utils.service'
 import WeatherList from './WeatherList';
 import CurrentWeatherCard from './CurrentWeatherCard';
+import Button from '@mui/material/Button';
 
 const HomePage = () => {
 	const [chosenCity, setChosenCity] = useState ({id: -1})
@@ -21,6 +22,7 @@ const HomePage = () => {
 	const [currentWeather, setCurrentWeather] = useState ({})
 	const [isFavorite, setIsFavorite] = useState (false)
 	const [showList, setShowList] = useState (false)
+	const [units,setUnits]=useState('F')
 	const [value, setValue] = useState ('')
 	const [favorites, setFavoriteList] = useState ([])
 	const state = useSelector ((state) => state.appstate);
@@ -94,8 +96,15 @@ const HomePage = () => {
 	}
 
 
-	return <div className="container">
-<div id="cloud-intro">
+	function convertForecastUnits () {
+		const newUnit= units==='F'?'C':'F'
+		setUnits(newUnit)
+
+	}
+
+	return	<div  >
+		<Button style={{color:'white'}} onClick={()=>convertForecastUnits()}>{units}
+		</Button>
 		<FormControl>
 			<InputLabel htmlFor="my-input">City</InputLabel>
 			<Input id="my-input" aria-describedby="find a city" value={value} onChange={(v) => getCities (v)}/>
@@ -119,12 +128,12 @@ const HomePage = () => {
 			}</div>
 		<div className={'card flex column'}>
 			<div><h4>Weather in {chosenCity?.LocalizedName}</h4><span>{isFavorite ?
-				<FavoriteIcon onClick={() => changeFavStatus (false)}/> :
-				<FavoriteBorderIcon onClick={() => changeFavStatus (true)}/>}</span></div>
-			<CurrentWeatherCard currentWeather={currentWeather}/>
+				<FavoriteIcon className={'hover'} onClick={() => changeFavStatus (false)}/> :
+				<FavoriteBorderIcon className={'hover'} onClick={() => changeFavStatus (true)}/>}</span></div>
+			<CurrentWeatherCard currentWeather={currentWeather} units={units}/>
 
 		</div>
-		<WeatherList forecast={forecast}/></div>
-	</div>
+		<WeatherList forecast={forecast} units={units}/></div>
+
 }
 export default HomePage

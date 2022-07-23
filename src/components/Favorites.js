@@ -14,14 +14,15 @@ const Favorites = () => {
 
 
 
-	return <div>Favorites<FavoriteIcon />
+	return <div className={'eventiList-container'}>
+		<h1>Favorites</h1><FavoriteIcon />
 
 
 		{state.favorites.length > 0 &&
-		<List>
+		<List  className={'EventiList'}>
 			{state.favorites.map ((c,index=0) => {
 
-				return <ListItem key={index++} style={{color: 'red'}}
+				return <ListItem key={index++} className={'card flex column'}
 				>{c.name}<FavoriteIcon />
 					<CurrentWeatherCard currentWeather={c?.currentWeather}/>
 				</ListItem>

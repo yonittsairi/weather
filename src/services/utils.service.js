@@ -1,24 +1,14 @@
 export const UtilsService = {
-    makeId,
-    getRandomInt,
+    fernhietToCelcuis,
     dateFormatter,
     dateFormat
 };
 
-function makeId(length = 6) {
-    var txt = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
+export function fernhietToCelcuis(fernhiet){
+    return ((fernhiet-32)/1.8).toFixed(0)
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min); // Min is inclusive, Max is Exclusive
-}
 function dateFormatter(timeStampStart) {
     const dateFormat = new Date(timeStampStart).toString()
     // const dateEndFormat = new Date(timeStampEnd).toString()
@@ -34,15 +24,7 @@ function dateFormatter(timeStampStart) {
         </section>
     )
 }
-// function dateFormat(timeStampStart) {
-//     const dateFormat = new Date(timeStampStart).toString()
-//     const dayName = dateFormat.substring(0, 3)
-//     const month = dateFormat.substring(4, 8)
-//     const dayNum = dateFormat.substring(8, 10)
-//     const time = dateFormat.substring(15, 21)
-//     return dayName + ', ' + month + dayNum
-//
-// }
+
 export function dateFormat (timeStampStart) {
     if (!timeStampStart){
         return ''

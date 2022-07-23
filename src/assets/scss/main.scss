@@ -4,15 +4,15 @@
 @import "setup/mixins";
 @import "setup/typography";
 
+
 // Basics
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
-@import "basics/links";
 @import "basics/forms";
 
 // Components
-@import "cmps/Header";
+
 @import "cmps/eventi-preview";
 @import "cmps/eventi-list";
 @import "cmps/eventi-detailsCmps";
@@ -22,6 +22,5 @@
 
 // Pages
 @import "views/_home-page";
-@import "views/about";
 @import "cmps/footer";
-@import "cmps/Header";
+

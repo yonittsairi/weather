@@ -10,31 +10,30 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = [{name:'Home',nav:'/'}, {name:'Favorites',nav:'/favorites'}];
+const pages = [{name: 'Home', nav: '/'}, {name: 'Favorites', nav: '/favorites'}];
 
 
 const Header = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = React.useState (null);
+	const [anchorElUser, setAnchorElUser] = React.useState (null);
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElNav(event.currentTarget);
+		setAnchorElNav (event.currentTarget);
 	};
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElUser(event.currentTarget);
+		setAnchorElUser (event.currentTarget);
 	};
 
 	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
+		setAnchorElNav (null);
 	};
 
 	return (
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+					<Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
 						<IconButton
 							size="large"
 							aria-label="account of current user"
@@ -43,48 +42,53 @@ const Header = () => {
 							onClick={handleOpenNavMenu}
 							color="inherit"
 						>
-							<MenuIcon />
+							<MenuIcon/>
 						</IconButton>
 						<Menu
 							id="menu-appbar"
 							anchorEl={anchorElNav}
 							anchorOrigin={{
 								vertical: 'bottom',
-								horizontal: 'left',
+								horizontal: 'left'
 							}}
 							keepMounted
 							transformOrigin={{
 								vertical: 'top',
-								horizontal: 'left',
+								horizontal: 'left'
 							}}
-							open={Boolean(anchorElNav)}
+							open={Boolean (anchorElNav)}
 							onClose={handleCloseNavMenu}
 							sx={{
-								display: { xs: 'block', md: 'none' },
+								display: {xs: 'block', md: 'none'}
 							}}
 						>
-							{pages.map(({name,nav}) => (
+							{pages.map (({name, nav}) => (
 								<Link to={nav} key={name}>
 
-								<MenuItem onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{name}</Typography>
-								</MenuItem></Link>
+									<MenuItem onClick={handleCloseNavMenu}>
+										<Typography textAlign="center">{name}</Typography>
+									</MenuItem></Link>
 							))}
+
+
+
+
 						</Menu>
 					</Box>
 
-					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						{pages.map(({name,nav},index) => (
-							<Link to={nav} 								key={nav}
+					<Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+						{pages.map (({name, nav}, index) => (
+							<Link to={nav} key={nav}
 							>
-							<Button
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
+								<Button
+									onClick={handleCloseNavMenu}
+									sx={{my: 2, color: 'white', display: 'block'}}
+								>
 
-								{name}
-							</Button></Link>
+									{name}
+								</Button></Link>
 						))}
+						<Button>C/F</Button>
 					</Box>
 				</Toolbar>
 			</Container>
