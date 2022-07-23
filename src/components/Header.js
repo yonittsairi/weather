@@ -19,7 +19,6 @@ const pages = [{name: 'Home', nav: '/'}, {name: 'Favorites', nav: '/favorites'}]
 
 const Header = () => {
 	const [anchorElNav, setAnchorElNav] = useState (null);
-	const [anchorElUser, setAnchorElUser] = useState (null);
 	const dispatch = useDispatch ();
 	const state = useSelector ((state) => state.appstate);
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -31,13 +30,12 @@ const Header = () => {
 	};
 
 	function convertForecastUnits () {
-		console.log ()
 		const newUnit = state.units === 'F' ? 'C' : 'F'
 		dispatch (actions.changeUnits (newUnit))
 	}
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static" >
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>

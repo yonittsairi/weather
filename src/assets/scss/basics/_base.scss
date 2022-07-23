@@ -3,33 +3,30 @@
     user-select: none;
 }
 
-::selection {
-    background-color: $clr1;
-    color: $clr6;
-}
 
-html {
+
+
+#root,html, body, .container{
+    width: 100%;
+    height: 100%;
     font-family: "Airbnb Cereal App Book", serif;
     line-height: 1.6;
     scroll-snap-destination: center;
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
 }
-b {
-    color: rgb(22, 22, 22);
-    line-height: 2;
-    margin-right: 5px;
-    font-weight: 600;
+.dark-mode{
+    background-color: rgba(0, 0, 0, 0.87);
+    color: #ffffff;
 }
 
-body {
-    font-size: rem(18px);
-    margin: 0 auto;
-    background-color: rgb(251, 251, 251);
-    padding-top: 75px;
+.light{
+    background-color: #007ced;
 }
-.main-layout {
-    margin: 0 auto;
-}
+
 h1,
 h2,
 h3,
@@ -49,9 +46,9 @@ a {
     color: inherit;
     cursor: pointer;
     text-align: right;
-    // margin: auto;
-    // padding: 15px;
+
 }
 a:hover {
     text-decoration: none;
+    background-color: orange;
 }

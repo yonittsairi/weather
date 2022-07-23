@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import citiesReducer from './Reducers'
+import appSlice from './Reducers'
 export function createStore() {
 	return configureStore({
 		                      reducer: {
-			                      appstate: citiesReducer
+			                      appstate: appSlice
 		                      },
 
 	                      });

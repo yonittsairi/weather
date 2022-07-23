@@ -7,7 +7,7 @@
 }
 
 @mixin for-narrow-layout {
-    @media (max-width: 460px) {
+    @media (max-width: 760px) {
         @content;
     }
 }

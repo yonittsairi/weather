@@ -2,7 +2,7 @@
   "name": "weather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yonittsairi.github.io/weather/",
+  "homepage": "https://yonittsairi.github.io/yonit-tsairi-18-07-2022/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",

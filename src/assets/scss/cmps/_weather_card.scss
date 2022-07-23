@@ -7,6 +7,11 @@
     height: 350px;
     border-radius: 20px;
 
+    &.dark-mode{
+        background-color: rgba(0, 0, 0, 0.87);
+        color: #ffffff;
+    }
+
     @include for-mobile-layout {
         width: 250px;
         height: 200px;
@@ -37,13 +42,10 @@
     height: 200px;
 
     @include for-narrow-layout {
-        width: 200px;
-        height: 80%;
-        left: 100px;
-        font-size: 0.5rem;
-
+        width: 90%;
+        height: 200px;
+        font-size: 0.8rem;
     }
-
 
 }
 .card-grid {

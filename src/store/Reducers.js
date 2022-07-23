@@ -11,7 +11,8 @@ const initialState = {
 	error: '',
 	currentWeather: StorageService.load ('currentWeather') || [],
 	defaultCity: StorageService.load ('defaultCity') || {},
-	units: 'F'
+	units: 'F',
+	darkMode:''
 };
 
 
@@ -47,7 +48,7 @@ export const getDefaultCity = createAsyncThunk ('weather/defaultCity', (data) =>
 })
 
 
-export const citiesSlice = createSlice ({
+export const appSlice = createSlice ({
 	                                        name: "weather",
 	                                        initialState,
 	                                        reducers: {
@@ -73,12 +74,16 @@ export const citiesSlice = createSlice ({
 
 		                                        },
 		                                        removeFavorite: (state, action) => {
-				                                        const newState= state?.favorites.filter ((f) => f?.name === action.payload.name)
+				                                        const newState= state?.favorites.filter ((f) => f?.name !== action.payload.name)
 														state.favorites=[...newState]
 				                                        StorageService.save ('favorites',newState)
 		                                        },
 		                                        changeUnits (state, action) {
 			                                        state.units = action.payload
+		                                        },
+		                                        setDarkMode(state,action){
+		                                        	state.darkMode=action.payload
+
 		                                        }
 	                                        },
 
@@ -147,5 +152,5 @@ export const citiesSlice = createSlice ({
                                         });
 
 // Action creators are generated for each case reducer function
-export const actions = citiesSlice.actions;
-export default citiesSlice.reducer;
+export const actions = appSlice.actions;
+export default appSlice.reducer;

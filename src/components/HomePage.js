@@ -94,8 +94,9 @@ const HomePage = () => {
 
 
 
-	return	<div  className={'flex column'} >
+	return	<div  className={'flex column '} >
 <div className={'search flex column align-center'}>
+	<h1>Don't forget to check the weather</h1>
 		<FormControl>
 			<InputLabel className={'input'} htmlFor="my-input">City</InputLabel>
 			<Input id="my-input" className={'input'}  aria-describedby="find a city" value={value} onChange={(v) => getCities (v)}/>
