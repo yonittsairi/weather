@@ -11,14 +11,15 @@ const initialState = {
 	error: '',
 	currentWeather: StorageService.load ('currentWeather') || [],
 	defaultCity: StorageService.load ('defaultCity') || {},
-	units:'F'
+	units: 'F'
 };
 
 
 export const getCitiesAsync = createAsyncThunk ('weather/cities', (data) => {
 	return weatherService.getCities (data)
-		.then ((response) =>
-			       response.data
+		.then ((response) => {
+			       return response
+		       }
 		)
 })
 
@@ -50,6 +51,9 @@ export const citiesSlice = createSlice ({
 	                                        name: "weather",
 	                                        initialState,
 	                                        reducers: {
+		                                        setCities: (state, action) => {
+			                                        state.cities = action.payload
+		                                        },
 		                                        setChosenCity: (state, action) => {
 			                                        state.chosenCity = action.payload
 			                                        StorageService.save ('chosenCity', action.payload)
@@ -58,23 +62,23 @@ export const citiesSlice = createSlice ({
 			                                        if (action.payload.id) {
 				                                        if (state.favorites?.length > 0) {
 					                                        const exist = state.favorites.find (x => x.id === action.payload.id)
-					                                        return
+					                                        if (exist) {
+						                                        return
+					                                        }
 				                                        }
-				                                        if (state.favorites?.length===0) {
-					                                        state.favorites = [...state.favorites, action.payload]
-					                                        StorageService.save ('favorites', [...state.favorites, action.payload])
-				                                        }
+				                                        state.favorites = [...state.favorites, action.payload]
+				                                        StorageService.save ('favorites', [...state.favorites, action.payload])
 			                                        }
+
 
 		                                        },
 		                                        removeFavorite: (state, action) => {
-			                                        if (state.favorites?.length > 0 && action.payload.id) {
-				                                        state.favorites = state.favorites.filter ((f) => f.id === action.payload.id)
-				                                        StorageService.save ('favorites', state.favorites)
-			                                        }
+				                                        const newState= state?.favorites.filter ((f) => f?.name === action.payload.name)
+														state.favorites=[...newState]
+				                                        StorageService.save ('favorites',newState)
 		                                        },
-		                                        changeUnits(state,action){
-			                                        state.units=action.payload
+		                                        changeUnits (state, action) {
+			                                        state.units = action.payload
 		                                        }
 	                                        },
 
@@ -83,36 +87,36 @@ export const citiesSlice = createSlice ({
 			                                        state.loading = true
 		                                        })
 		                                        builder.addCase (getCitiesAsync.fulfilled, (state, action) => {
+
 			                                        state.loading = false
-			                                        state.cities = [...action.payload]
+			                                        state.cities = action.payload
 			                                        state.error = ''
 			                                        StorageService.save ('cities', state.cities)
 		                                        })
 		                                        builder.addCase (getCitiesAsync.rejected, (state, action) => {
 			                                        state.loading = false
 			                                        state.cities = []
-			                                        // state.error = action.error.message
+			                                        state.error = 'Unable to fetch cities list'
 		                                        })
 		                                        builder.addCase (getFiveDaysForecastByLocationKey.pending, (state, action) => {
 			                                        state.loading = true
 		                                        })
 		                                        builder.addCase (getFiveDaysForecastByLocationKey.fulfilled, (state, action) => {
-			                                        console.log (action, state)
 			                                        state.loading = false
-			                                        state.weather = action.payload
+			                                        state.weather = action.payload.DailyForecasts
 			                                        state.error = ''
-			                                        StorageService.save ('weather', action.payload)
+			                                        StorageService.save ('weather', action.payload.DailyForecasts)
 		                                        })
 		                                        builder.addCase (getFiveDaysForecastByLocationKey.rejected, (state, action) => {
 			                                        state.loading = false
 			                                        state.weather = []
-			                                        // state.error = action.error.message
+			                                        state.error = 'Unable to fetch city 5 days forecast'
+
 		                                        })
 		                                        builder.addCase (getCurrentWeather.pending, state => {
 			                                        state.loading = true
 		                                        })
 		                                        builder.addCase (getCurrentWeather.fulfilled, (state, action) => {
-			                                        console.log (action)
 			                                        state.loading = false
 			                                        state.currentWeather = action.payload
 			                                        state.error = ''
@@ -121,7 +125,7 @@ export const citiesSlice = createSlice ({
 		                                        builder.addCase (getCurrentWeather.rejected, (state, action) => {
 			                                        state.loading = false
 			                                        state.currentWeather = []
-			                                        // state.error = action.error.message
+			                                        state.error = 'Unable to fetch city current  weather'
 		                                        })
 		                                        builder.addCase (getDefaultCity.pending, state => {
 			                                        state.loading = true
@@ -136,7 +140,8 @@ export const citiesSlice = createSlice ({
 		                                        builder.addCase (getDefaultCity.rejected, (state, action) => {
 			                                        state.loading = false
 			                                        state.defaultCity = {}
-			                                        // state.error = action.error.message
+			                                        state.error = 'Unable to fetch default tcity data'
+
 		                                        })
 	                                        }
                                         });

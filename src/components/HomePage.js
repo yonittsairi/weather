@@ -11,13 +11,11 @@ import {
 	getDefaultCity
 } from '../store/Reducers';
 import {constants} from '../constants';
-import {dateFormat} from '../services/utils.service'
 import WeatherList from './WeatherList';
 import CurrentWeatherCard from './CurrentWeatherCard';
-import Button from '@mui/material/Button';
+import CitiesList from './CitiesList';
 
 const HomePage = () => {
-	const [chosenCity, setChosenCity] = useState ({id: -1})
 	const [forecast, setForecast] = useState ({DailyForecasts: []})
 	const [currentWeather, setCurrentWeather] = useState ({})
 	const [isFavorite, setIsFavorite] = useState (false)
@@ -25,33 +23,31 @@ const HomePage = () => {
 	const [value, setValue] = useState ('')
 	const [favorites, setFavoriteList] = useState ([])
 	const state = useSelector ((state) => state.appstate);
-	const [units,setUnits]=useState(state.units)
 	const dispatch = useDispatch ();
 	const chooseCity = (e) => {
+		setValue('')
 		dispatch (actions.setChosenCity (e))
-		setChosenCity (e)
+		dispatch(actions.setCities([]))
 		getForecast (e.Key)
 	}
 	useEffect (() => {
 		checkIfIncludedInFavorites (state.defaultCity)
 		setFavoriteList (state.favorites)
 		if (state?.chosenCity?.Key == constants.telAviv) {
-			setChosenCity (state.chosenCity)
 			getForecast (constants.telAviv)
 			checkIfIncludedInFavorites (state.chosenCity)
 		}
 		else {
+
 			dispatch (getDefaultCity (constants.telAviv))
-			setChosenCity (state.defaultCity)
 			getForecast (constants.telAviv)
 		}
-
 
 	}, [])
 
 	const checkIfIncludedInFavorites = () => {
 		if (favorites?.length > 0) {
-			const existsInFav = favorites.find ((f) => f.id === chosenCity.Key)
+			const existsInFav = favorites.find ((f) => f.id == state.chosenCity.Key)
 			if (existsInFav) {
 				setIsFavorite (true)
 			}
@@ -76,16 +72,17 @@ const HomePage = () => {
 	}
 
 	const getForecast = (data) => {
-		checkIfIncludedInFavorites (chosenCity)
+		checkIfIncludedInFavorites (state.chosenCity)
 		dispatch (getCurrentWeather (data))
 		dispatch (getFiveDaysForecastByLocationKey (data))
 		setForecast (state.weather)
+
 		setCurrentWeather (state.currentWeather)
 	}
 
 	function changeFavStatus (bool) {
 		setIsFavorite (bool)
-		const payload = {id: chosenCity?.Key, name: chosenCity.LocalizedName, currentWeather}
+		const payload = {id: Number(state.chosenCity?.Key), name: state.chosenCity.LocalizedName, currentWeather}
 		if (bool) {
 			dispatch (actions.addFavorite (payload))
 		}
@@ -96,45 +93,23 @@ const HomePage = () => {
 	}
 
 
-	function convertForecastUnits () {
-		const newUnit= units==='F'?'C':'F'
-		dispatch(actions.changeUnits(newUnit))
-		setUnits(newUnit)
 
-	}
-
-	return	<div  >
-		<Button style={{color:'white'}} onClick={()=>convertForecastUnits()}>{units}
-		</Button>
+	return	<div  className={'flex column'} >
+<div className={'search flex column align-center'}>
 		<FormControl>
-			<InputLabel htmlFor="my-input">City</InputLabel>
-			<Input id="my-input" aria-describedby="find a city" value={value} onChange={(v) => getCities (v)}/>
-			<FormHelperText id="my-helper-text">Type a city name</FormHelperText>
+			<InputLabel className={'input'} htmlFor="my-input">City</InputLabel>
+			<Input id="my-input" className={'input'}  aria-describedby="find a city" value={value} onChange={(v) => getCities (v)}/>
+			<FormHelperText className={'input'} id="my-helper-text">Type a city name</FormHelperText>
 		</FormControl>
+			<CitiesList cities={state.cities} showList={showList} chooseCity={chooseCity} chosenCity={state.chosenCity}/>
+</div>
+		<div className={' '}>
 
-
-		<div>
-			{(state.cities.length > 0 && showList) &&
-			<List>
-				{state.cities.map ((c) => {
-					if (chosenCity.Key === c.Key) {
-						return <ListItem key={c.Key} style={{color: 'red'}}
-						                 onClick={(x) => chooseCity (c)}>{c?.LocalizedName} , {c?.Country.ID} </ListItem>
-
-					}
-					return <ListItem key={c.Key}
-					                 onClick={(x) => chooseCity (c)}>{c?.LocalizedName} , {c?.Country.ID} </ListItem>
-				})}
-			</List>
-			}</div>
-		<div className={'card flex column'}>
-			<div><h4>Weather in {chosenCity?.LocalizedName}</h4><span>{isFavorite ?
-				<FavoriteIcon className={'hover'} onClick={() => changeFavStatus (false)}/> :
-				<FavoriteBorderIcon className={'hover'} onClick={() => changeFavStatus (true)}/>}</span></div>
-			<CurrentWeatherCard currentWeather={currentWeather} units={units}/>
-
+			<CurrentWeatherCard currentWeather={currentWeather}  units={state.units} changeFavStatus={changeFavStatus}
+			                     chosenCity={state.chosenCity||state.defaultCity}/>
 		</div>
-		<WeatherList forecast={forecast} units={units}/></div>
+
+		<WeatherList forecast={forecast} units={state.units}/></div>
 
 }
 export default HomePage

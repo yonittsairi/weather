@@ -9,13 +9,8 @@ import {StorageService} from './storage.service';
 // desired location. By default, a truncated version of the current conditions data is returned. The full object can be
 // obtained by passing "details=true" into the url string.
 async function getCurrentWeather (locationKey) {
-	try {
-		const res= await axios.get (`${constants.getCurrentWeatherUrl}${locationKey}${constants.apiKey}`)
-		console.log (res.data[0])
-		return res.data[0]
-	} catch (e) {
-		console.log ('Error')
-	}
+	const res = await axios.get (`${constants.getCurrentWeatherUrl}${locationKey}${constants.apiKey}`)
+	return res.data[0]
 
 }
 
@@ -24,40 +19,29 @@ async function getCurrentWeather (locationKey) {
 // truncated version of the hourly forecast data is returned. The full object can be obtained by passing "details=true"
 // into the url string.
 async function getFiveDaysForecastByLocationKey (locationKey) {
-	try {
-		const res=await axios.get (`${constants.getFiveDayLocationUrl}${locationKey}${constants.apiKey}`)
-		return res.data
-	} catch (e) {
-		console.log ('Error')
-	}
-}
-
-async function getCities(q) {
-	try {
-		const cities =StorageService.load('cities')
-		if (cities){
-			return cities
-		}
-		const res = await axios.get (`${constants.locationsUrl}${constants.apiKey}&q=${q}`)
-		return res.data
-	} catch (e) {
-		console.log ('Error')
-	}
-}
-async function getOneCity(key){
-	try {
-		const defaultCity =StorageService.load('defaultCity')
-		if (defaultCity.Key===constants.telAviv){
-			return defaultCity
-		}
-		const res = await axios.get (`${constants.oneCityUrl}${key}${constants.apiKey}`)
-		return res.data
-	} catch (e) {
-		console.log ('Error')
-	}
+	const res = await axios.get (`${constants.getFiveDayLocationUrl}${locationKey}${constants.apiKey}`)
+	return res.data
 
 }
-export const weatherService={
+
+async function getCities (q) {
+	const res = await axios.get (`${constants.locationsUrl}${constants.apiKey}&q=${q}`)
+	return res.data
+
+}
+
+async function getOneCity (key) {
+	const defaultCity = StorageService.load ('defaultCity')
+	if (defaultCity.Key) {
+		return defaultCity
+	}
+	const res = await axios.get (`${constants.oneCityUrl}${key}${constants.apiKey}`)
+	return res.data
+
+
+}
+
+export const weatherService = {
 	getFiveDaysForecastByLocationKey,
 	getCities,
 	getCurrentWeather,

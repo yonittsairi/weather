@@ -13,14 +13,12 @@
 
 // Components
 
-@import "cmps/eventi-preview";
-@import "cmps/eventi-list";
-@import "cmps/eventi-detailsCmps";
+@import "cmps/weather_card";
+@import "cmps/list";
+@import "cmps/header";
 
 
-@import "cmps/dialog";
 
 // Pages
 @import "views/_home-page";
-@import "cmps/footer";
 

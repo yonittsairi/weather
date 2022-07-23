@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    // font-family: "Airbnb Cereal App Book";
     user-select: none;
 }
 
@@ -10,7 +9,7 @@
 }
 
 html {
-    font-family: "Airbnb Cereal App Book";
+    font-family: "Airbnb Cereal App Book", serif;
     line-height: 1.6;
     scroll-snap-destination: center;
     scroll-behavior: smooth;

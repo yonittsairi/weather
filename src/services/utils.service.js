@@ -6,6 +6,9 @@ export const UtilsService = {
 
 
 export function fernhietToCelcuis(fernhiet){
+    if (!fernhiet){
+        return 0
+    }
     return ((fernhiet-32)/1.8).toFixed(0)
 }
 
@@ -16,7 +19,6 @@ function dateFormatter(timeStampStart) {
     const month = dateFormat.substring(4, 8)
     const dayNum = dateFormat.substring(8, 10)
     const time = dateFormat.substring(15, 21)
-    // const timeEnd = dateEndFormat.substring(15, 21)
     return (
         <section>
             <b> {dayName + ', ' + month + dayNum}</b>

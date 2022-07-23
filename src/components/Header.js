@@ -10,24 +10,31 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import {actions} from '../store/Reducers';
+import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 const pages = [{name: 'Home', nav: '/'}, {name: 'Favorites', nav: '/favorites'}];
 
 
 const Header = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState (null);
-	const [anchorElUser, setAnchorElUser] = React.useState (null);
-
+	const [anchorElNav, setAnchorElNav] = useState (null);
+	const [anchorElUser, setAnchorElUser] = useState (null);
+	const dispatch = useDispatch ();
+	const state = useSelector ((state) => state.appstate);
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElNav (event.currentTarget);
-	};
-	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElUser (event.currentTarget);
 	};
 
 	const handleCloseNavMenu = () => {
 		setAnchorElNav (null);
 	};
+
+	function convertForecastUnits () {
+		console.log ()
+		const newUnit = state.units === 'F' ? 'C' : 'F'
+		dispatch (actions.changeUnits (newUnit))
+	}
 
 	return (
 		<AppBar position="static">
@@ -71,12 +78,16 @@ const Header = () => {
 							))}
 
 
-
-
 						</Menu>
+						<button className={'btn'} onClick={() => convertForecastUnits ()}>{state.units}°
+						</button>
 					</Box>
-
 					<Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+						<div style={{position: 'fixed', right: 60}}>
+							<button className={'btn'}
+							        onClick={() => convertForecastUnits ()}>{state.units}°
+							</button>
+						</div>
 						{pages.map (({name, nav}, index) => (
 							<Link to={nav} key={nav}
 							>
@@ -88,7 +99,8 @@ const Header = () => {
 									{name}
 								</Button></Link>
 						))}
-						<Button>C/F</Button>
+
+
 					</Box>
 				</Toolbar>
 			</Container>

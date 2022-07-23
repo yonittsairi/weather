@@ -1,0 +1,71 @@
+.card {
+    width: 350px;
+    margin: auto;
+    transition: 0.3s;
+    box-shadow: 0 8px 40px -19px rgba(0, 0, 0, 0.3);
+    background-color: rgb(255, 255, 255);
+    height: 350px;
+    border-radius: 20px;
+
+    @include for-mobile-layout {
+        width: 250px;
+        height: 200px;
+        font-size: 0.5rem;
+
+    }
+
+    @include for-narrow-layout {
+        width: 150px;
+        height: 350px;
+        font-size:0.8rem;
+
+    }
+
+    @include for-normal-layout {
+        width: 350px;
+        height: 400px;
+
+    }
+
+}
+
+.current{
+    position: relative;
+    left: 30px;
+    margin: 0;
+    margin-bottom: 100px;
+    height: 200px;
+
+    @include for-narrow-layout {
+        width: 200px;
+        height: 80%;
+        left: 100px;
+        font-size: 0.5rem;
+
+    }
+
+
+}
+.card-grid {
+    margin: 20px 10px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(60px, 1fr));
+    grid-gap: 20px;
+
+
+    @include for-narrow-layout {
+        display: flex;
+        flex-direction: column;
+
+
+
+    }
+
+    @include for-normal-layout {
+
+
+    }
+}
+

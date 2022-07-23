@@ -11,11 +11,8 @@
     }
 
     @include for-narrow-layout {
-        grid-template-columns:
-        minmax(1.6rem, 1fr)
-        minmax(auto, $mobile-breakpoint)
-        minmax(1.6rem, 1fr)
-    ;
+        display: flex;
+        flex-direction: column    ;
     }
 
     @include for-normal-layout {

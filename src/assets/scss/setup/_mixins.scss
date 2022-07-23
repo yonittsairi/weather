@@ -7,19 +7,19 @@
 }
 
 @mixin for-narrow-layout {
-    @media (min-width: 500px) {
+    @media (max-width: 460px) {
         @content;
     }
 }
 
 @mixin for-normal-layout {
-    @media (min-width: 600px) {
+    @media (max-width: 1200px) {
         @content;
     }
 }
 
 @mixin for-wide-layout {
-    @media (min-width: 800px) {
+    @media (max-width: 1200px) {
         @content;
     }
 }

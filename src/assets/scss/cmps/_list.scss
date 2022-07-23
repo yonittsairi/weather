@@ -1,0 +1,45 @@
+.cities{
+    background-color: #f2f5f6;
+    position: fixed;
+  margin-top: 70px;
+    width: 350px;
+    list-style:none;
+  border-radius:5%;
+    :hover{
+        cursor: pointer;
+    }
+
+  @include for-mobile-layout {
+    z-index: 1000;
+    position: fixed;
+
+  }
+
+  @include for-narrow-layout {
+    z-index: 1000;
+    position: absolute;
+
+  }
+
+}
+.city-item{
+    list-style:none;
+
+    &:hover{
+        font-weight: bold;
+    }
+}
+.search{
+  margin-top: 50px;
+}
+.chosen{
+  color: #061d43;
+  font-weight: bold;
+}
+@media screen and (max-width: $mobile-breakpoint) {
+
+}
+
+@media screen and (max-width: $narrow-breakpoint) {
+
+}
