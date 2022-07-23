@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/yonit-tsairi-18-07-2022/static/css/main.a366133b.css",
-    "main.js": "/yonit-tsairi-18-07-2022/static/js/main.d7c7b601.js",
+    "main.js": "/yonit-tsairi-18-07-2022/static/js/main.a62cb71d.js",
     "static/js/787.13d76ca7.chunk.js": "/yonit-tsairi-18-07-2022/static/js/787.13d76ca7.chunk.js",
     "static/media/Kufam-MediumItalic.ttf": "/yonit-tsairi-18-07-2022/static/media/Kufam-MediumItalic.2ecbc5a1643ecf106889.ttf",
     "static/media/AirbnbCerealBook.woff": "/yonit-tsairi-18-07-2022/static/media/AirbnbCerealBook.d42c6a4d011ab55732b2.woff",
@@ -11,11 +11,11 @@
     "static/media/AirbnbCerealBlack.woff": "/yonit-tsairi-18-07-2022/static/media/AirbnbCerealBlack.1b848ef9b3436723dff6.woff",
     "index.html": "/yonit-tsairi-18-07-2022/index.html",
     "main.a366133b.css.map": "/yonit-tsairi-18-07-2022/static/css/main.a366133b.css.map",
-    "main.d7c7b601.js.map": "/yonit-tsairi-18-07-2022/static/js/main.d7c7b601.js.map",
+    "main.a62cb71d.js.map": "/yonit-tsairi-18-07-2022/static/js/main.a62cb71d.js.map",
     "787.13d76ca7.chunk.js.map": "/yonit-tsairi-18-07-2022/static/js/787.13d76ca7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a366133b.css",
-    "static/js/main.d7c7b601.js"
+    "static/js/main.a62cb71d.js"
   ]
 }
